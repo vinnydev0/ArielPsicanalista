@@ -1,358 +1,775 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#F7F5EF">
+  <meta name="theme-color" content="#f7f5ef">
   <meta name="description" content="Ariel Psicanalista — um espaço de escuta, acolhimento e autoconhecimento.">
-  <title>Ariel Psicanalista | Escuta e Acolhimento</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>Ariel Psicanalista | Acolhimento e Autoconhecimento</title>
 
   <style>
     :root {
-      --cream: #F7F5EF;
-      --white: #FFFFFF;
-      --green: #315A4D;
-      --green-dark: #234438;
-      --green-light: #E8EFE8;
-      --gold: #C5A66B;
-      --text: #303A34;
-      --muted: #737A73;
-      --border: #E5E3DA;
-    }
-
-    /* Força o tema claro, independentemente do CSS externo */
-    html {
-      color-scheme: light;
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-      background: var(--cream);
+      --fundo: #f7f5ef;
+      --branco: #ffffff;
+      --verde: #315a4d;
+      --verde-escuro: #244438;
+      --dourado: #b99a58;
+      --texto: #303a34;
+      --suave: #6e776f;
+      --borda: #e7e3d8;
+      --sombra: 0 12px 35px rgba(37, 56, 43, .08);
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
     }
 
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--cream) !important;
-      color: var(--text) !important;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fundo) !important;
+      color: var(--texto) !important;
       line-height: 1.7;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea { font: inherit; }
-    img { max-width: 100%; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    .site-header {
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
       position: sticky;
       top: 0;
       z-index: 100;
-      min-height: 86px;
-      padding: 15px 7%;
-      background: #FFFFFF !important;
-      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, .96);
+      border-bottom: 1px solid var(--borda);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar {
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 25px;
+      gap: 24px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--green);
+    .logo {
+      color: var(--verde);
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: bold;
+      line-height: 1.2;
     }
 
-    .brand-symbol {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: var(--gold);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 27px;
-    }
-
-    .brand-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 31px;
-      line-height: 1;
-      font-weight: 600;
-    }
-
-    .brand-subtitle {
+    .logo small {
       display: block;
-      margin-top: 6px;
-      font-size: 9px;
+      color: var(--dourado);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
       letter-spacing: 3px;
-      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 5px;
     }
 
-    .main-nav {
+    nav {
       display: flex;
       align-items: center;
-      gap: 27px;
+      gap: 25px;
+      font-size: 14px;
     }
 
-    .main-nav a {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
+    nav a:hover {
+      color: var(--dourado);
     }
 
-    .main-nav a:hover { color: var(--green); }
-
-    .main-nav .nav-cta {
-      padding: 11px 18px;
+    .botao {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 23px;
+      border: 0;
       border-radius: 5px;
-      background: var(--green);
-      color: #FFFFFF;
+      background: var(--verde);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .botao:hover {
+      background: var(--verde-escuro);
+      transform: translateY(-2px);
+    }
+
+    .botao-dourado {
+      background: var(--dourado);
+      color: #fff;
+    }
+
+    .botao-dourado:hover {
+      background: #9f8042;
     }
 
     .hero {
+      padding: 85px 0;
+      background: linear-gradient(115deg, #f7f5ef 0%, #f7f5ef 56%, #ece9dc 56%, #ece9dc 100%);
+    }
+
+    .hero-grid {
       display: grid;
       grid-template-columns: 1.05fr .95fr;
       align-items: center;
       gap: 65px;
-      padding: 80px 7%;
-      max-width: 1600px;
-      margin: auto;
     }
 
-    .eyebrow {
-      color: var(--green);
-      font-size: 11px;
+    .etiqueta {
+      color: var(--dourado);
+      text-transform: uppercase;
       letter-spacing: 3px;
-      font-weight: 700;
-      margin: 0 0 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 18px;
     }
 
     h1, h2, h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 500;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: normal;
+      line-height: 1.2;
     }
 
-    .hero h1 {
-      color: var(--green-dark);
-      font-size: clamp(46px, 5.4vw, 76px);
-      line-height: 1.04;
-      margin: 0 0 25px;
-      max-width: 650px;
+    h1 {
+      color: var(--verde);
+      font-size: clamp(38px, 5vw, 62px);
+      margin-bottom: 23px;
     }
 
-    .hero-description {
-      max-width: 520px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 2;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 22px;
-      border-radius: 5px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: .2s ease;
-    }
-
-    .button-primary {
-      background: var(--green);
-      color: #FFFFFF;
-    }
-
-    .button-primary:hover {
-      background: var(--green-dark);
-      transform: translateY(-2px);
-    }
-
-    .button-outline {
-      border: 1px solid #C9D2C9;
-      color: var(--green);
-    }
-
-    .button-outline:hover { background: var(--green-light); }
-
-    .hero-photo {
-      min-height: 460px;
-      background: #E7E5DB url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85') center/cover no-repeat;
-      border-radius: 48% 48% 8px 8px;
-      box-shadow: 0 20px 55px rgba(38,60,47,.10);
-    }
-
-    .section {
-      padding: 95px 7%;
-    }
-
-    .about {
-      background: #FFFFFF !important;
-      display: grid;
-      grid-template-columns: .9fr 1fr;
-      align-items: center;
-      gap: 75px;
-    }
-
-    .about-photo {
-      min-height: 420px;
-      border-radius: 7px;
-      background: #E8E7DF url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=85') center/cover no-repeat;
-    }
-
-    .about h2, .services h2, .contact h2 {
-      color: var(--green-dark);
-      font-size: clamp(40px, 4.4vw, 58px);
-      line-height: 1.1;
-      margin: 0 0 23px;
-    }
-
-    .section-copy {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 2;
-    }
-
-    .quote {
-      margin-top: 28px;
-      border-left: 3px solid var(--gold);
-      padding: 5px 0 5px 20px;
-      color: var(--green);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 25px;
+    h1 span {
+      color: var(--dourado);
       font-style: italic;
     }
 
-    .services {
-      background: var(--cream) !important;
-      text-align: center;
+    .hero p {
+      color: var(--suave);
+      font-size: 17px;
+      max-width: 510px;
+      margin-bottom: 30px;
     }
 
-    .services-intro {
-      max-width: 680px;
+    .hero-imagem {
+      min-height: 420px;
+      border-radius: 180px 180px 12px 12px;
+      background:
+        linear-gradient(rgba(49, 90, 77, .08), rgba(49, 90, 77, .08)),
+        url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=1000&q=85")
+        center / cover no-repeat;
+      box-shadow: var(--sombra);
+      position: relative;
+    }
+
+    .frase {
+      position: absolute;
+      bottom: 22px;
+      left: -25px;
+      max-width: 280px;
+      padding: 22px;
+      background: white;
+      border-left: 4px solid var(--dourado);
+      box-shadow: var(--sombra);
+      color: var(--verde);
+      font-family: Georgia, serif;
+      font-size: 18px;
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .titulo-secao {
+      text-align: center;
+      max-width: 700px;
       margin: 0 auto 45px;
     }
 
-    .service-grid {
+    .titulo-secao h2 {
+      color: var(--verde);
+      font-size: clamp(30px, 4vw, 43px);
+      margin-bottom: 16px;
+    }
+
+    .titulo-secao p {
+      color: var(--suave);
+    }
+
+    .sobre {
+      background: var(--branco);
+    }
+
+    .sobre-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-      text-align: left;
+      grid-template-columns: .85fr 1.15fr;
+      align-items: center;
+      gap: 60px;
     }
 
-    .service-card {
-      background: #FFFFFF !important;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 30px;
-      transition: .2s ease;
+    .sobre-destaque {
+      padding: 42px;
+      background: var(--verde);
+      color: white;
+      border-radius: 8px;
     }
 
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 35px rgba(38,60,47,.08);
+    .sobre-destaque .simbolo {
+      color: #e2c888;
+      font-family: Georgia, serif;
+      font-size: 55px;
+      line-height: 1;
     }
 
-    .service-icon {
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--green-light);
-      color: var(--green);
-      font-size: 22px;
+    .sobre-destaque h3 {
+      font-size: 29px;
+      margin: 18px 0;
+    }
+
+    .sobre-texto h2 {
+      color: var(--verde);
+      font-size: 39px;
       margin-bottom: 20px;
     }
 
-    .service-card h3 {
-      color: var(--green-dark);
+    .sobre-texto p {
+      color: var(--suave);
+      margin-bottom: 15px;
+    }
+
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .servico {
+      padding: 32px 26px;
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 8px;
+      box-shadow: var(--sombra);
+    }
+
+    .servico .numero {
+      color: var(--dourado);
+      font-family: Georgia, serif;
+      font-size: 32px;
+    }
+
+    .servico h3 {
+      color: var(--verde);
+      font-size: 23px;
+      margin: 15px 0 12px;
+    }
+
+    .servico p {
+      color: var(--suave);
+      font-size: 15px;
+    }
+
+    .processo {
+      background: #eeece3;
+    }
+
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .passo {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .passo-numero {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      border: 1px solid var(--dourado);
+      border-radius: 50%;
+      color: var(--verde);
+      font-family: Georgia, serif;
+      font-size: 23px;
+    }
+
+    .passo h3 {
+      color: var(--verde);
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .passo p {
+      color: var(--suave);
+    }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 55px;
+      align-items: start;
+    }
+
+    .contato-info h2 {
+      color: var(--verde);
+      font-size: 42px;
+      margin-bottom: 18px;
+    }
+
+    .contato-info p {
+      color: var(--suave);
+      margin-bottom: 20px;
+    }
+
+    .contato-card {
+      margin-top: 25px;
+      padding: 22px;
+      border-left: 3px solid var(--dourado);
+      background: white;
+    }
+
+    .contato-card strong {
+      display: block;
+      color: var(--verde);
+      margin-bottom: 5px;
+    }
+
+    form {
+      padding: 32px;
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 8px;
+      box-shadow: var(--sombra);
+    }
+
+    form h3 {
+      color: var(--verde);
       font-size: 27px;
-      margin: 0 0 10px;
+      margin-bottom: 22px;
     }
 
-    .service-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.9;
-      margin: 0;
+    .campo {
+      margin-bottom: 17px;
     }
 
-    .how {
-      background: #FFFFFF !important;
+    .campo label {
+      display: block;
+      color: var(--texto);
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    .campo input,
+    .campo select,
+    .campo textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #dcded6;
+      border-radius: 5px;
+      background: #fdfdfb;
+      color: var(--texto);
+      outline: none;
+    }
+
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+      border-color: var(--verde);
+    }
+
+    .campo textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .aviso {
+      color: var(--suave);
+      font-size: 12px;
+      margin: 12px 0 18px;
+    }
+
+    .form-botao {
+      width: 100%;
+    }
+
+    footer {
+      padding: 32px 0;
+      background: var(--verde-escuro);
+      color: #fff;
       text-align: center;
     }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 30px;
-      margin-top: 45px;
-    }
-
-    .step-number {
-      color: var(--gold);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-    }
-
-    .step h3 {
-      color: var(--green-dark);
-      font-size: 25px;
-      margin: 5px 0 10px;
-    }
-
-    .step p {
-      color: var(--muted);
+    footer p {
       font-size: 13px;
+      opacity: .85;
     }
 
-    .contact {
-      background: var(--green) !important;
-      padding: 75px 7%;
+    footer .logo-rodape {
+      font-family: Georgia, serif;
+      font-size: 23px;
+      margin-bottom: 10px;
     }
 
-    .contact-panel {
-      max-width: 1120px;
-      margin: auto;
-      padding: 50px;
-      border-radius: 8px;
-      background: #FFFFFF !important;
+    .whatsapp-flutuante {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 99;
+      width: 58px;
+      height: 58px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 55px;
+      place-items: center;
+      border-radius: 50%;
+      background: #218c54;
+      color: white;
+      font-size: 27px;
+      box-shadow: 0 5px 20px #0002;
     }
 
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
+    @media (max-width: 800px) {
+      .navbar {
+        padding: 17px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        width: 100%;
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 60px 0;
+        background: var(--fundo);
+      }
+
+      .hero-grid,
+      .sobre-grid,
+      .contato-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero-imagem {
+        min-height: 330px;
+        margin-left: 15px;
+      }
+
+      .frase {
+        left: -15px;
+      }
+
+      .servicos-grid,
+      .passos {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      form {
+        padding: 23px;
+      }
+
+      .sobre-texto h2,
+      .contato-info h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="#inicio" class="logo">
+        Ariel Psicanalista
+        <small>Escuta · Acolhimento · Cuidado</small>
+      </a>
+
+      <nav aria-label="Menu principal">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#atendimento">Atendimento</a>
+        <a href="#processo">Como funciona</a>
+        <a href="#contato" class="botao">Agendar conversa</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="etiqueta">Um espaço para você</div>
+          <h1>Conhecer a si mesmo é um caminho de <span>transformação.</span></h1>
+          <p>
+            Um espaço de escuta e acolhimento para refletir sobre sentimentos,
+            compreender experiências e descobrir novas formas de olhar para si.
+          </p>
+          <a href="#contato" class="botao botao-dourado">Vamos conversar</a>
+        </div>
+
+        <div class="hero-imagem" role="img" aria-label="Paisagem tranquila ao amanhecer">
+          <div class="frase">
+            “Cada pessoa tem sua própria história e merece ser ouvida.”
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+      <div class="container sobre-grid">
+        <div class="sobre-destaque">
+          <div class="simbolo">“</div>
+          <h3>Um lugar onde sua história pode ser escutada.</h3>
+          <p>
+            Sem julgamentos, respeitando seu tempo, suas experiências
+            e sua individualidade.
+          </p>
+        </div>
+
+        <div class="sobre-texto">
+          <div class="etiqueta">Sobre o espaço</div>
+          <h2>Olá, seja bem-vindo(a).</h2>
+          <p>
+            Sou Ariel, e este espaço foi pensado para oferecer um ambiente
+            acolhedor, ético e respeitoso, onde você possa falar sobre suas
+            vivências e refletir sobre questões importantes da sua vida.
+          </p>
+          <p>
+            O processo de escuta respeita a singularidade de cada pessoa.
+            Não existe uma história igual à outra, e cada percurso merece
+            atenção e cuidado.
+          </p>
+          <a href="#contato" class="botao">Entre em contato</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="atendimento">
+      <div class="container">
+        <div class="titulo-secao">
+          <div class="etiqueta">Acompanhamento</div>
+          <h2>Um espaço para olhar para dentro</h2>
+          <p>
+            O atendimento é um convite à reflexão e ao autoconhecimento,
+            respeitando as necessidades e o momento de cada pessoa.
+          </p>
+        </div>
+
+        <div class="servicos-grid">
+          <article class="servico">
+            <div class="numero">01</div>
+            <h3>Escuta individual</h3>
+            <p>
+              Um espaço reservado para compartilhar pensamentos,
+              sentimentos e experiências pessoais.
+            </p>
+          </article>
+
+          <article class="servico">
+            <div class="numero">02</div>
+            <h3>Autoconhecimento</h3>
+            <p>
+              Reflexões sobre sua história, suas relações e os sentidos
+              que você constrói ao longo da vida.
+            </p>
+          </article>
+
+          <article class="servico">
+            <div class="numero">03</div>
+            <h3>Acolhimento</h3>
+            <p>
+              Um ambiente de respeito à sua individualidade,
+              com atenção à sua história e ao seu tempo.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="processo" id="processo">
+      <div class="container">
+        <div class="titulo-secao">
+          <div class="etiqueta">Seu primeiro passo</div>
+          <h2>Como funciona</h2>
+          <p>
+            Começar pode ser mais simples do que parece.
+            Você pode entrar em contato para conhecer o atendimento.
+          </p>
+        </div>
+
+        <div class="passos">
+          <article class="passo">
+            <div class="passo-numero">1</div>
+            <h3>Entre em contato</h3>
+            <p>Envie uma mensagem para tirar dúvidas e conhecer a proposta.</p>
+          </article>
+
+          <article class="passo">
+            <div class="passo-numero">2</div>
+            <h3>Combine um horário</h3>
+            <p>Consulte a disponibilidade e combine os detalhes do atendimento.</p>
+          </article>
+
+          <article class="passo">
+            <div class="passo-numero">3</div>
+            <h3>Comece sua jornada</h3>
+            <p>Conheça o espaço de escuta e descubra se essa proposta faz sentido para você.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container contato-grid">
+        <div class="contato-info">
+          <div class="etiqueta">Vamos conversar?</div>
+          <h2>Seu próximo passo começa com uma conversa.</h2>
+          <p>
+            Se quiser saber mais sobre o atendimento, envie uma mensagem.
+            Será um prazer explicar como funciona e esclarecer suas dúvidas.
+          </p>
+
+          <div class="contato-card">
+            <strong>Atendimento com hora marcada</strong>
+            <span>Consulte horários e disponibilidade pelo WhatsApp.</span>
+          </div>
+
+          <div class="contato-card">
+            <strong>Privacidade e respeito</strong>
+            <span>Compartilhe apenas as informações necessárias para o primeiro contato.</span>
+          </div>
+        </div>
+
+        <form id="formContato">
+          <h3>Solicitar informações</h3>
+
+          <div class="campo">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Como podemos chamar você?" required>
+          </div>
+
+          <div class="campo">
+            <label for="telefone">Seu telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(DDD) 99999-9999" required>
+          </div>
+
+          <div class="campo">
+            <label for="modalidade">Preferência de atendimento</label>
+            <select id="modalidade" name="modalidade" required>
+              <option value="">Selecione uma opção</option>
+              <option value="Presencial">Presencial</option>
+              <option value="Online">Online</option>
+              <option value="Gostaria de saber mais">Gostaria de saber mais</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label for="mensagem">Mensagem (opcional)</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Escreva sua dúvida ou solicitação. Evite incluir informações íntimas neste primeiro contato."></textarea>
+          </div>
+
+          <p class="aviso">
+            Ao continuar, os dados preenchidos serão usados para preparar uma
+            mensagem no WhatsApp. O formulário não armazena nem envia dados sozinho.
+          </p>
+
+          <button type="submit" class="botao form-botao">
+            Continuar pelo WhatsApp
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="logo-rodape">Ariel Psicanalista</div>
+      <p>Um espaço de escuta, acolhimento e autoconhecimento.</p>
+      <p style="margin-top: 10px;">© <span id="ano"></span> Ariel Psicanalista. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-flutuante"
+     id="whatsappFlutuante"
+     href="#contato"
+     aria-label="Entrar em contato pelo WhatsApp"
+     title="WhatsApp">✆</a>
+
+  <script>
+    /*
+      IMPORTANTE:
+      Substitua o número abaixo pelo WhatsApp real do Ariel.
+      Use código do país + DDD + número, somente números.
+      Exemplo fictício: 5511999999999
+    */
+    const WHATSAPP = "5511999999999";
+
+    document.getElementById("ano").textContent = new Date().getFullYear();
+
+    function abrirWhatsApp(mensagem) {
+      if (WHATSAPP === "5511999999999") {
+        alert("Antes de publicar, configure o número real do WhatsApp no código do site.");
+        return;
+      }
+
+      const url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensagem);
+      window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    .contact-form label {
-      color: var(--text);
-      font-size: 12px;
-      font-weight: 600;
-    }
+    document.getElementById("formContato").addEventListener("submit", function(event) {
+      event.preventDefault();
 
-    .contact-form input,
-    .contact-form textarea {
-      display: block;
-      width: 100%;
-      margin-top: 5px
+      const nome = document.getElementById("nome").value.trim();
+      const telefone = document.getElementById("telefone").value.trim();
+      const modalidade = document.getElementById("modalidade").value;
+      const mensagem = document.getElementById("mensagem").value.trim();
+
+      const texto =
+        "Olá! Gostaria de informações sobre o atendimento de Ariel Psicanalista.%0A" +
+        "Nome: " + nome + "%0A" +
+        "Telefone: " + telefone + "%0A" +
+        "Preferência: " + modalidade +
+        (mensagem ? "%0AMensagem: " + mensagem : "");
+
+      abrirWhatsApp(decodeURIComponent(texto));
+    });
+
+    document.getElementById("whatsappFlutuante").addEventListener("click", function(event) {
+      event.preventDefault();
+      abrirWhatsApp("Olá! Gostaria de informações sobre o atendimento de Ariel Psicanalista.");
+    });
+  </script>
+</body>
+</html>
